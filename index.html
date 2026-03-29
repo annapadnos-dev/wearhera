@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HERA</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fdfaf7;
+      color: #222;
+    }
+
+    header {
+      background: white;
+      padding: 20px 40px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #222;
+      font-size: 15px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 80px 20px 60px;
+      background: #f6eee8;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: 0 auto 25px;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 14px 28px;
+      background: black;
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-size: 15px;
+    }
+
+    .section {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 32px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 30px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+      text-align: center;
+    }
+
+    .product-image {
+      background: #eee;
+      height: 260px;
+      border-radius: 14px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      font-size: 14px;
+    }
+
+    .product-card h3 {
+      margin: 10px 0 8px;
+    }
+
+    .product-card p {
+      font-size: 15px;
+      color: #555;
+    }
+
+    .story {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      line-height: 1.8;
+      font-size: 18px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      border-top: 1px solid #eee;
+      color: #666;
+      font-size: 14px;
+      background: white;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">HERA</div>
+    <nav>
+      <a href="#shop">Shop</a>
+      <a href="#about">About</a>
+      <a href="#mission">Mission</a>
+      <a href="mailto:annie@wearhera.com">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Safe. Stylish. Strong.</h1>
+    <p>
+      HERA is activewear for girls and young women made with certified clean materials,
+      designed to deliver health, confidence, and style.
+    </p>
+    <a class="button" href="mailto:annie@wearhera.com">Join the Waitlist</a>
+  </section>
+
+  <section class="section" id="shop">
+    <h2>Shop the HERO Line</h2>
+    <div class="products">
+      <div class="product-card">
+        <div class="product-image">Sports Bra Image</div>
+        <h3>Sports Bra</h3>
+        <p>Supportive, stylish, and made with safe materials.</p>
+        <p><strong>$58</strong></p>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image">Shorts Image</div>
+        <h3>Shorts</h3>
+        <p>Comfortable performance shorts designed for movement.</p>
+        <p><strong>$58</strong></p>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image">Underwear Image</div>
+        <h3>Underwear</h3>
+        <p>Everyday essentials made with health-conscious fabrics.</p>
+        <p><strong>$14</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <h2>About HERA</h2>
+    <div class="story">
+      HERA was created to fill a gap in the market: activewear that is both safe and stylish.
+      Inspired by the Greek goddess and protector of women, HERA exists to give girls and
+      young women a better option for the clothes they wear closest to their skin.
+    </div>
+  </section>
+
+  <section class="section" id="mission">
+    <h2>Our Mission</h2>
+    <div class="story">
+      We believe girls should not have to choose between health and style. HERA is committed
+      to empowering young women through safe materials, thoughtful design, and a mission that
+      supports confidence, strength, and self-expression.
+    </div>
+  </section>
+
+  <footer>
+    © 2026 HERA • wearhera.com • Annie Padnos
+  </footer>
+
+</body>
+</html>
