@@ -5,132 +5,310 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HERA</title>
   <style>
+    :root {
+      --bg: #f8f6f2;
+      --soft-pink: #e7a0b6;
+      --light-green: #d8e8d4;
+      --deep-green: #5f7c68;
+      --text: #1f1f1f;
+      --white: #ffffff;
+      --card-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #fdfaf7;
-      color: #222;
+      background: var(--bg);
+      color: var(--text);
     }
 
     header {
-      background: white;
-      padding: 20px 40px;
-      border-bottom: 1px solid #eee;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(6px);
+      padding: 18px 36px;
+      border-bottom: 1px solid #ece7e1;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
-    .logo {
-      font-size: 28px;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       font-weight: bold;
       letter-spacing: 2px;
+      font-size: 22px;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
     }
 
     nav a {
       margin-left: 20px;
       text-decoration: none;
-      color: #222;
+      color: var(--text);
       font-size: 15px;
     }
 
     .hero {
-      text-align: center;
       padding: 80px 20px 60px;
-      background: #f6eee8;
+      background: linear-gradient(135deg, var(--light-green), #f7efe9 50%, #f5d7e1);
     }
 
-    .hero h1 {
-      font-size: 48px;
-      margin-bottom: 15px;
+    .hero-inner {
+      max-width: 1150px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      align-items: center;
     }
 
-    .hero p {
-      max-width: 700px;
-      margin: 0 auto 25px;
+    .hero-text h1 {
+      font-size: 56px;
+      margin: 0 0 16px;
+      line-height: 1.05;
+    }
+
+    .hero-text p {
       font-size: 18px;
-      line-height: 1.6;
+      line-height: 1.7;
+      max-width: 650px;
+      margin-bottom: 28px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
     }
 
     .button {
       display: inline-block;
       padding: 14px 28px;
-      background: black;
-      color: white;
       text-decoration: none;
-      border-radius: 30px;
+      border-radius: 999px;
       font-size: 15px;
+      font-weight: bold;
+    }
+
+    .button-primary {
+      background: var(--text);
+      color: white;
+    }
+
+    .button-secondary {
+      background: white;
+      color: var(--text);
+      border: 1px solid #ddd;
+    }
+
+    .hero-image {
+      text-align: center;
+    }
+
+    .hero-image img {
+      width: 100%;
+      max-width: 430px;
+      border-radius: 30px;
+      box-shadow: var(--card-shadow);
+      background: white;
     }
 
     .section {
-      padding: 60px 20px;
-      max-width: 1100px;
+      padding: 70px 20px;
+    }
+
+    .container {
+      max-width: 1150px;
       margin: 0 auto;
     }
 
     .section h2 {
       text-align: center;
-      margin-bottom: 40px;
-      font-size: 32px;
+      font-size: 38px;
+      margin: 0 0 18px;
+    }
+
+    .section-intro {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+      font-size: 17px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 18px;
+    }
+
+    .pill {
+      background: white;
+      border: 1px solid #e8e2dc;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-size: 14px;
     }
 
     .products {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
     }
 
     .product-card {
       background: white;
-      border-radius: 18px;
-      padding: 20px;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.06);
-      text-align: center;
-    }
-
-    .product-image {
-      background: #eee;
-      height: 260px;
-      border-radius: 14px;
-      margin-bottom: 15px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
       display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #666;
+      flex-direction: column;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 270px;
+      object-fit: cover;
+      background: #f3f3f3;
+    }
+
+    .product-info {
+      padding: 22px;
+    }
+
+    .product-info h3 {
+      margin: 0 0 8px;
+      font-size: 24px;
+    }
+
+    .price {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 8px 0 14px;
+    }
+
+    .pre-sale {
+      display: inline-block;
+      background: var(--light-green);
+      color: #29432f;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 14px;
+    }
+
+    .product-info p {
+      color: #444;
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+
+    .meta {
       font-size: 14px;
+      margin-bottom: 8px;
     }
 
-    .product-card h3 {
-      margin: 10px 0 8px;
+    .swatches {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin: 10px 0 14px;
     }
 
-    .product-card p {
-      font-size: 15px;
-      color: #555;
+    .swatch {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.2);
     }
 
-    .story {
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: center;
+    .swatch.black { background: #1c1c1c; }
+    .swatch.pink { background: #e7a0b6; }
+    .swatch.blue { background: #6aa8d6; }
+
+    .story-box {
+      background: linear-gradient(135deg, #fff, #f8edf2);
+      border-radius: 30px;
+      padding: 40px;
       line-height: 1.8;
+      box-shadow: var(--card-shadow);
+      text-align: center;
       font-size: 18px;
     }
 
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 26px;
+      margin-top: 30px;
+    }
+
+    .mini-card {
+      background: white;
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .mini-card h3 {
+      margin-top: 0;
+      font-size: 24px;
+    }
+
     footer {
+      margin-top: 40px;
       text-align: center;
       padding: 30px 20px;
-      border-top: 1px solid #eee;
+      border-top: 1px solid #e9e1db;
+      background: white;
       color: #666;
       font-size: 14px;
-      background: white;
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner,
+      .split {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-text h1 {
+        font-size: 42px;
+      }
+
+      header {
+        padding: 16px 20px;
+      }
+
+      nav {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <div class="logo">HERA</div>
+    <div class="brand">
+      <img src="logo.png" alt="HERA logo">
+      <span>HERA</span>
+    </div>
     <nav>
       <a href="#shop">Shop</a>
       <a href="#about">About</a>
@@ -140,55 +318,128 @@
   </header>
 
   <section class="hero">
-    <h1>Safe. Stylish. Strong.</h1>
-    <p>
-      HERA is activewear for girls and young women made with certified clean materials,
-      designed to deliver health, confidence, and style.
-    </p>
-    <a class="button" href="mailto:annie@wearhera.com">Join the Waitlist</a>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h1>Safe. Stylish. Strong.</h1>
+        <p>
+          HERA is activewear for girls and young women made with certified clean materials,
+          designed to deliver health, confidence, and style without compromise.
+        </p>
+        <div class="hero-buttons">
+          <a class="button button-primary" href="mailto:annie@wearhera.com?subject=HERA%20Pre-Sale%20Interest">Join the Pre-Sale Waitlist</a>
+          <a class="button button-secondary" href="#shop">Shop Pre-Sale</a>
+        </div>
+        <div class="pill-row">
+          <div class="pill">Pre-Sale Now Open</div>
+          <div class="pill">Sizes XS–XL</div>
+          <div class="pill">OEKO-TEX Certified Materials</div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="logo.png" alt="HERA logo">
+      </div>
+    </div>
   </section>
 
   <section class="section" id="shop">
-    <h2>Shop the HERO Line</h2>
-    <div class="products">
-      <div class="product-card">
-        <div class="product-image">Sports Bra Image</div>
-        <h3>Sports Bra</h3>
-        <p>Supportive, stylish, and made with safe materials.</p>
-        <p><strong>$58</strong></p>
-      </div>
+    <div class="container">
+      <h2>Shop the HERO Pre-Sale</h2>
+      <p class="section-intro">
+        The first HERA collection includes a sports bra, shorts, and underwear designed for
+        girls and young women who care about both health and style.
+      </p>
 
-      <div class="product-card">
-        <div class="product-image">Shorts Image</div>
-        <h3>Shorts</h3>
-        <p>Comfortable performance shorts designed for movement.</p>
-        <p><strong>$58</strong></p>
-      </div>
+      <div class="products">
+        <div class="product-card">
+          <img src="sports-bra.png" alt="HERA sports bra">
+          <div class="product-info">
+            <div class="pre-sale">Pre-Sale • Sizes XS–XL</div>
+            <h3>Sports Bra</h3>
+            <div class="price">$58</div>
+            <p>
+              A supportive, flattering sports bra made with clean materials and designed for movement,
+              confidence, and everyday wear.
+            </p>
+            <div class="meta"><strong>Colors:</strong></div>
+            <div class="swatches">
+              <span class="swatch black" title="Black"></span>
+              <span class="swatch pink" title="Pink"></span>
+              <span class="swatch blue" title="Blue"></span>
+            </div>
+            <div class="meta"><strong>Available sizes:</strong> XS, S, M, L, XL</div>
+          </div>
+        </div>
 
-      <div class="product-card">
-        <div class="product-image">Underwear Image</div>
-        <h3>Underwear</h3>
-        <p>Everyday essentials made with health-conscious fabrics.</p>
-        <p><strong>$14</strong></p>
+        <div class="product-card">
+          <img src="shorts.png" alt="HERA shorts">
+          <div class="product-info">
+            <div class="pre-sale">Pre-Sale • Sizes XS–XL</div>
+            <h3>Shorts</h3>
+            <div class="price">$58</div>
+            <p>
+              Performance shorts made to feel comfortable, look elevated, and pair perfectly
+              with the HERO sports bra.
+            </p>
+            <div class="meta"><strong>Colors:</strong></div>
+            <div class="swatches">
+              <span class="swatch black" title="Black"></span>
+              <span class="swatch pink" title="Pink"></span>
+              <span class="swatch blue" title="Blue"></span>
+            </div>
+            <div class="meta"><strong>Available sizes:</strong> XS, S, M, L, XL</div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <img src="underwear.png" alt="HERA underwear">
+          <div class="product-info">
+            <div class="pre-sale">Pre-Sale • Sizes XS–XL</div>
+            <h3>Underwear</h3>
+            <div class="price">$14</div>
+            <p>
+              A clean, everyday essential made for comfort and simplicity, starting in a classic black option.
+            </p>
+            <div class="meta"><strong>Color:</strong> Black</div>
+            <div class="swatches">
+              <span class="swatch black" title="Black"></span>
+            </div>
+            <div class="meta"><strong>Available sizes:</strong> XS, S, M, L, XL</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="section" id="about">
-    <h2>About HERA</h2>
-    <div class="story">
-      HERA was created to fill a gap in the market: activewear that is both safe and stylish.
-      Inspired by the Greek goddess and protector of women, HERA exists to give girls and
-      young women a better option for the clothes they wear closest to their skin.
+    <div class="container">
+      <h2>About HERA</h2>
+      <div class="story-box">
+        HERA was created to fill a gap in the market: activewear that is both safe and stylish.
+        Inspired by the Greek goddess and protector of women, HERA exists to give girls and
+        young women a better option for the clothes they wear closest to their skin.
+      </div>
     </div>
   </section>
 
   <section class="section" id="mission">
-    <h2>Our Mission</h2>
-    <div class="story">
-      We believe girls should not have to choose between health and style. HERA is committed
-      to empowering young women through safe materials, thoughtful design, and a mission that
-      supports confidence, strength, and self-expression.
+    <div class="container">
+      <h2>Our Mission</h2>
+      <div class="split">
+        <div class="mini-card">
+          <h3>Health + Style</h3>
+          <p>
+            We believe girls should not have to choose between looking good and wearing materials
+            they feel good about.
+          </p>
+        </div>
+        <div class="mini-card">
+          <h3>Confidence + Empowerment</h3>
+          <p>
+            HERA is built to support confidence, strength, and self-expression through thoughtful
+            design and a mission-driven brand.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 
