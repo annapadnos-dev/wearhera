@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HERA Product</title>
+  <style>
+    :root {
+      --bg: #f8f6f2;
+      --soft-pink: #e7a0b6;
+      --light-green: #d8e8d4;
+      --text: #1f1f1f;
+      --white: #ffffff;
+      --card-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    header {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(6px);
+      padding: 18px 36px;
+      border-bottom: 1px solid #ece7e1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      font-size: 22px;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: white;
+    }
+
+    nav {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .cart-link {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: bold;
+    }
+
+    .page {
+      max-width: 1150px;
+      margin: 40px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 36px;
+    }
+
+    .gallery, .details {
+      background: white;
+      border-radius: 28px;
+      box-shadow: var(--card-shadow);
+      padding: 24px;
+    }
+
+    .main-image {
+      width: 100%;
+      height: 520px;
+      object-fit: contain;
+      background: #f5f5f5;
+      border-radius: 20px;
+    }
+
+    .thumbs {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .thumbs img {
+      width: 92px;
+      height: 92px;
+      object-fit: cover;
+      border-radius: 14px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      background: #f5f5f5;
+    }
+
+    .thumbs img.active {
+      border-color: #90b59a;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--light-green);
+      color: #29432f;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 42px;
+    }
+
+    .price {
+      font-size: 28px;
+      font-weight: bold;
+      margin: 6px 0 18px;
+    }
+
+    .desc {
+      line-height: 1.7;
+      color: #444;
+      margin-bottom: 26px;
+    }
+
+    .section-label {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .options {
+      margin-bottom: 22px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      border: 1px solid #d6d6d6;
+      background: white;
+      border-radius: 999px;
+      padding: 10px 16px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .chip.active {
+      background: #1f1f1f;
+      color: white;
+      border-color: #1f1f1f;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    button, .link-button {
+      border: none;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .primary {
+      background: #1f1f1f;
+      color: white;
+    }
+
+    .secondary {
+      background: white;
+      color: #1f1f1f;
+      border: 1px solid #ddd;
+    }
+
+    .message {
+      margin-top: 18px;
+      font-weight: bold;
+      color: #355a3e;
+    }
+
+    @media (max-width: 900px) {
+      .page {
+        grid-template-columns: 1fr;
+      }
+
+      .main-image {
+        height: 360px;
+      }
+
+      header {
+        padding: 16px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="brand" href="index.html">
+      <img src="logo.png" alt="HERA logo">
+      <span>HERA</span>
+    </a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="cart.html" class="cart-link">Cart (<span id="cart-count">0</span>)</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="gallery">
+      <img id="main-image" class="main-image" src="" alt="Product image">
+      <div id="thumbs" class="thumbs"></div>
+    </section>
+
+    <section class="details">
+      <div class="badge">Pre-Sale • Sizes XS–XL</div>
+      <h1 id="product-name"></h1>
+      <div id="product-price" class="price"></div>
+      <p id="product-desc" class="desc"></p>
+
+      <div class="options">
+        <div class="section-label">Color</div>
+        <div id="color-options" class="chips"></div>
+      </div>
+
+      <div class="options">
+        <div class="section-label">Size</div>
+        <div id="size-options" class="chips"></div>
+      </div>
+
+      <div class="button-row">
+        <button id="add-to-cart" class="primary">Add to Cart</button>
+        <a href="cart.html" class="link-button secondary">View Cart</a>
+      </div>
+
+      <div id="message" class="message"></div>
+    </section>
+  </main>
+
+  <script src="cart.js"></script>
+  <script>
+    const products = {
+      "sports-bra": {
+        name: "Sports Bra",
+        price: 58,
+        desc: "A supportive, flattering sports bra made with clean materials and designed for movement, confidence, and everyday wear.",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        colors: {
+          Pink: "sports-bra.png",
+          Blue: "blue-sports-bra.png",
+          Black: "black-sports-bra.png"
+        }
+      },
+      "shorts": {
+        name: "Shorts",
+        price: 58,
+        desc: "Performance shorts made to feel comfortable, look elevated, and pair perfectly with the HERO sports bra.",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        colors: {
+          Pink: "pink-shorts.png",
+          Blue: "blue-shorts.png",
+          Black: "black-shorts.png"
+        }
+      },
+      "underwear": {
+        name: "Underwear",
+        price: 14,
+        desc: "A clean, everyday essential made for comfort and simplicity in a classic black option.",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        colors: {
+          Black: "underwear.png"
+        }
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const itemKey = params.get("item") || "sports-bra";
+    const product = products[itemKey];
+
+    let selectedColor = Object.keys(product.colors)[0];
+    let selectedSize = "M";
+
+    const nameEl = document.getElementById("product-name");
+    const priceEl = document.getElementById("product-price");
+    const descEl = document.getElementById("product-desc");
+    const mainImage = document.getElementById("main-image");
+    const thumbs = document.getElementById("thumbs");
+    const colorOptions = document.getElementById("color-options");
+    const sizeOptions = document.getElementById("size-options");
+    const addButton = document.getElementById("add-to-cart");
+    const messageEl = document.getElementById("message");
+
+    function renderProduct() {
+      nameEl.textContent = product.name;
+      priceEl.textContent = "$" + product.price;
+
+      descEl.textContent = product.desc;
+
+      renderColors();
+      renderSizes();
+      renderGallery();
+    }
+
+    function renderColors() {
+      colorOptions.innerHTML = "";
+      Object.keys(product.colors).forEach(color => {
+        const btn = document.createElement("button");
+        btn.className = "chip" + (color === selectedColor ? " active" : "");
+        btn.textContent = color;
+        btn.onclick = () => {
+          selectedColor = color;
+          renderColors();
+          renderGallery();
+        };
+        colorOptions.appendChild(btn);
+      });
+    }
+
+    function renderSizes() {
+      sizeOptions.innerHTML = "";
+      product.sizes.forEach(size => {
+        const btn = document.createElement("button");
+        btn.className = "chip" + (size === selectedSize ? " active" : "");
+        btn.textContent = size;
+        btn.onclick = () => {
+          selectedSize = size;
+          renderSizes();
+        };
+        sizeOptions.appendChild(btn);
+      });
+    }
+
+    function renderGallery() {
+      thumbs.innerHTML = "";
+
+      const allImages = Object.values(product.colors);
+      const currentImage = product.colors[selectedColor];
+      mainImage.src = currentImage;
+
+      allImages.forEach(imgSrc => {
+        const img = document.createElement("img");
+        img.src = imgSrc;
+        img.alt = product.name;
+        if (imgSrc === currentImage) img.classList.add("active");
+        img.onclick = () => {
+          const foundColor = Object.keys(product.colors).find(key => product.colors[key] === imgSrc);
+          selectedColor = foundColor;
+          renderColors();
+          renderGallery();
+        };
+        thumbs.appendChild(img);
+      });
+    }
+
+    addButton.onclick = () => {
+      addToCart({
+        id: itemKey + "-" + selectedColor + "-" + selectedSize,
+        name: product.name,
+        color: selectedColor,
+        size: selectedSize,
+        price: product.price,
+        image: product.colors[selectedColor],
+        qty: 1
+      });
+
+      messageEl.textContent = product.name + " added to cart.";
+      updateCartCount();
+    };
+
+    renderProduct();
+    updateCartCount();
+  </script>
+</body>
+</html>
